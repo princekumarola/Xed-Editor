@@ -24,6 +24,7 @@ public class TextSelectionCursorController implements CursorController {
     private final TextSelectionHandleView mStartHandle, mEndHandle;
     private String mStoredSelectedText;
     private boolean mIsSelectingText = false;
+    private boolean mPreserveSelection = false;
     private long mShowStartTime = System.currentTimeMillis();
 
     private final int mHandleHeight;
@@ -72,8 +73,10 @@ public class TextSelectionCursorController implements CursorController {
             mActionMode.finish();
         }
 
+          if (!mPreserveSelection) {
         mSelX1 = mSelY1 = mSelX2 = mSelY2 = -1;
         mIsSelectingText = false;
+    }
 
         return true;
     }
